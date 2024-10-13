@@ -1,0 +1,11 @@
+version: "3"
+services:
+  redis:
+    image: redis:7-alpine
+    ports:
+      - 6379:6379
+    environment:
+      - REDIS_PASSWORD=kaivest
+    command: /bin/sh -c "redis-server --requirepass $$REDIS_PASSWORD --appendonly yes --replica-read-only no"
+    volumes:
+      - "redis-data:/data"
